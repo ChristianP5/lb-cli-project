@@ -1,12 +1,12 @@
 const {
-    getUsersHandler,
+    getItemsHandler,
 } = require('./handler');
 
 const routes = [
     {
-        path: '/users',
+        path: '/items',
         method: 'GET',
-        handler: getUsersHandler,
+        handler: getItemsHandler,
     },
 ];
 

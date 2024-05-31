@@ -1,7 +1,7 @@
-const getUsersHandler = (request, h)=>{
+const getItemsHandler = (request, h)=>{
     const response = h.response({
         status: 'success',
-        message: 'Welcome to Users API',
+        message: 'Welcome to Items API',
     });
 
     response.code(200);
@@ -9,5 +9,5 @@ const getUsersHandler = (request, h)=>{
 }
 
 module.exports = {
-    getUsersHandler,
+    getItemsHandler,
 }
