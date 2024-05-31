@@ -1,10 +1,35 @@
 const Hapi = require('@hapi/hapi');
+const routes = require('./routes');
+
 
 const init = async()=>{
 
     const server = Hapi.server({
         host: 'localhost',
         port: 9000,
+    });
+
+    server.route(routes);
+
+    server.ext('onPreResponse', (request, h)=>{
+        const response = request.response;
+
+        if(response instanceof Error || response.isBoom){
+            console.error(`Error Response!`);
+
+            const newResponse = h.response({
+                status: 'fail',
+                message: 'Returned an Error!'
+            });
+
+            newResponse.code(500);
+            return newResponse;
+
+        }
+
+        console.log(response);
+        return h.continue;
+        
     });
 
     await server.start();
